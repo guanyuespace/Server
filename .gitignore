@@ -1,0 +1,12 @@
+.idea/
+.gradle/
+gradle/
+out/
+*.iml
+*.crt
+*.csr
+*.cer
+*.crt
+Test.java
+
+
