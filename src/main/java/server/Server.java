@@ -25,7 +25,10 @@ public class Server extends Thread {
 
     private static void test() {
         Pattern p = Pattern.compile("window.Gbanners =\n(\\[.*?]);", Pattern.DOTALL);
-        String str = "window.Gbanners =\n[hello, what happened ? [bye];....];hello[yue];";
+        String str = "window.Gbanners =\n[hello, what happened ? [bye];[yue];....];hello[yue];";
+        p=Pattern.compile("window.Gbanners =\n(\\[[\\w\\d\\,\\?\\s]+(\\[\\w+\\];)+\\.+\\]);");
+//        str="hello [yue1234[][]];";
+//        p=Pattern.compile("(\\[[\\w\\d]+(\\[\\])+]);");
         Matcher matcher = p.matcher(str);
         if (matcher.find())
             System.out.println(matcher.group(1));
@@ -79,7 +82,7 @@ public class Server extends Thread {
                 Matcher matcherPic = patternPic.matcher(line);
 
                 //获取session数据
-                Pattern pattern = Pattern.compile("GET /getSession\\?jscode=(.*)&appid=(.*)&appsecret=(.*)\\s+");
+                Pattern pattern = Pattern.compile("GET /getSession\\?jscode=(.*)&appid=(.*)&appsecret=(.*)\\s+.*");
                 Matcher matcher = pattern.matcher(line);
                 if (matcher.matches()) { //获取session数据
                     System.out.println("request session");
